@@ -1,0 +1,58 @@
+@charset "utf-8"; 
+
+/*------------------------------------
+최초 작성일 : 2020.11.06
+마지막 수정일 : 2020.11.06 
+------------------------------------*/
+
+
+/*맑은고딕*/
+@font-face {
+    font-family:MalgunGothic; 
+    src:url(../font/MalgunGothic.eot);
+}
+
+
+/*나눔스퀘어*/
+@font-face {
+ font-family: 'NanumSquare';
+ font-weight: 400;
+ src: url(../font/NanumSquareR.eot);
+ src: url(../font/NanumSquareR.eot?#iefix) format('embedded-opentype'),
+      url(../font/NanumSquareR.woff) format('woff'),
+      url(../font/NanumSquareR.ttf) format('truetype');
+}
+
+@font-face {
+ font-family: 'NanumSquare';
+ font-weight: 700;
+ src: url(../font/NanumSquareB.eot);
+ src: url(../font/NanumSquareB.eot?#iefix) format('embedded-opentype'),
+      url(../font/NanumSquareB.woff) format('woff'),
+      url(../font/NanumSquareB.ttf) format('truetype');
+}
+
+@font-face {
+ font-family: 'NanumSquare';
+ font-weight: 800;
+ src: url(../font/NanumSquareEB.eot);
+ src: url(../font/NanumSquareEB.eot?#iefix) format('embedded-opentype'),
+      url(../font/NanumSquareEB.woff) format('woff'),
+      url(../font/NanumSquareEB.ttf) format('truetype');
+}
+
+@font-face {
+ font-family: 'NanumSquare';
+ font-weight: 300;
+ src: url(../font/NanumSquareL.eot);
+ src: url(../font/NanumSquareL.eot?#iefix) format('embedded-opentype'),
+      url(../font/NanumSquareL.woff) format('woff'),
+      url(../font/NanumSquareL.ttf) format('truetype');
+}
+
+
+/*AudioWide*/
+@font-face {
+ font-family: 'Audiowide';
+ src: url(../font/Audiowide-Regular.ttf) format('truetype');
+}
