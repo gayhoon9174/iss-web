@@ -1,5 +1,5 @@
 import { createWebHistory, createRouter } from "vue-router";
-import { store } from './../store/store'
+import store from '../store/store'
 
 const rejectAuthUser = (to, from, next) => { 
     console.log(store)

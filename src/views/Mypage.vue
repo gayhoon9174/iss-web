@@ -1,22 +1,39 @@
 <template>
     <div>
-        <h1>{{ userInfo.name }}님 환영합니다.</h1>
+        <h1>{{ getUserInfo("name") }}님 환영합니다.</h1>
     </div>
-    <button @click="$store.dispatch('logout')">로그아웃</button>
+    <button @click="logout">로그아웃</button>
 </template>
 
 <script>
-import { mapState } from "vuex"
+import { mapGetters } from "vuex"
 
 export default {
     data:() => ({
         drawer: null
     }),
     computed:{
-        ...mapState(["userInfo"])
+        ...mapGetters(['getUser'])
     },
     props:{
         source: String
+    },
+    methods : {
+        getUserInfo(keyname) {
+            if( this.getUser == null ) {
+                return "";
+            }
+
+            if( keyname == null || keyname === "") {
+                return "";
+            }
+
+            return (this.getUser[keyname]!=null)?this.getUser[keyname]:"";
+        },
+        logout() {
+            this.$store.dispatch('logout');
+            this.$router.push({ name: "Login" })
+        }
     }
 }
 </script>

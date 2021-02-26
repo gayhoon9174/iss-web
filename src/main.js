@@ -1,6 +1,6 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import { store } from './store/store'   //위에서 작성한 store.js를 import 해준다.
+import store from './store/store'   //위에서 작성한 store.js를 import 해준다.
 import router from './router'   //router를 import 해준다.
 
 createApp(App)

@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex"
+import { mapGetters, mapActions } from "vuex"
 
 export default {
     components:{
@@ -62,7 +62,7 @@ export default {
         }
     },
     computed:{
-        ...mapState(["isLogin", "isLoginError"])
+        ...mapGetters(["isLogin", "isLoginError"])
     },
     methods: {
         ...mapActions(["login"]),
@@ -77,6 +77,12 @@ export default {
             //         ? (this.mailError = false, this.pwError = true)
             //         : (this.loginSuccess = true, this.mailError = false, this.pwError = false)
         //}
+        
+        
+        // login(siginObj) {
+        //     this.$store.dispatch("login", siginObj);
+        //     this.$router.push({ name: "mypage" });
+        // }
     }
 }
 </script>
