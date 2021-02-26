@@ -10,6 +10,9 @@
 <script>
 
 export default {
+  beforeCreate() {
+    this.$store.dispatch("getMemberInfo");
+  },
   components:{
   },
   name: 'App',
