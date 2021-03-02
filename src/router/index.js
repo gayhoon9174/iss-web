@@ -33,6 +33,36 @@ const routes = [
         component: () =>
         import('@/views/Mypage.vue')
     },
+    {
+        path: "/list",
+        name: "list",
+        component: () =>
+        import('@/views/List.vue')
+    },
+    {
+        path: "/write",
+        name: "write",
+        component: () =>
+        import('@/views/Write.vue')
+    },
+    {
+        path: "/all",
+        name: "all",
+        component: () =>
+        import('@/views/All.vue')
+    },
+    {
+        path: "/requested",
+        name: "requested",
+        component: () =>
+        import('@/views/Requested.vue')
+    },
+    {
+        path: "/completed",
+        name: "completed",
+        component: () =>
+        import('@/views/Completed.vue')
+    },
 ];
 
 const router = createRouter({

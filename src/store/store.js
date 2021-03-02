@@ -29,7 +29,7 @@ export default createStore({   //store라는 변수를 만들고 그 변수에 V
             state.isLogin = true
             state.isLoginError = false
             state.userInfo = payload
-            router.push({ name: "mypage" })
+            router.push({ name: "list" })
         },
         // 로그인이 실패했을 때
         loginError(state){

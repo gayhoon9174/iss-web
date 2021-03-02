@@ -28,6 +28,7 @@ export default {
 
 @import './assets/css/common.css';
 @import './assets/css/font.css';
+@import './assets/css/global.scss';
 
 .wrap{
   height:100%;

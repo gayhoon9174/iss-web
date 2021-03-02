@@ -4,7 +4,7 @@
             <div class="login_left">
                 <div class="login_cont">
                     <div class="login_cont_logo">
-                        <img :src="loginLogoUrl" alt="logo">
+                        <img :src="require('@/assets/images/login/login_logo.png')" alt="logo">
                     </div>
                     <div class="login_cont_form">
                         <form>
@@ -40,6 +40,9 @@
                         <a>Create account</a>
                         <a>Find password</a>
                     </div>
+                    <div class="bottom_logo">
+                        <img :src="require('@/assets/images/login/login_bottom_logo.png')">
+                    </div>
                 </div>
             </div>
             <div class="login_right">dd</div>
@@ -56,7 +59,6 @@ export default {
     name: 'Login',
     data () {
         return{
-            loginLogoUrl: './assets/images/login/login_logo.png', //로그인 로고 URL
             email: null,
             password: null,
         }
@@ -111,7 +113,7 @@ $font-color-gray-hover: #8E9298;
         .login_cont{
             
             .login_cont_logo{
-
+                margin-bottom:80px;
             }
 
             .login_cont_form{
@@ -170,6 +172,10 @@ $font-color-gray-hover: #8E9298;
                 a:hover{
                     color:$font-color-gray-hover;
                 }
+            }
+
+            .bottom_logo{
+                margin-top:100px;
             }
         }
     }
