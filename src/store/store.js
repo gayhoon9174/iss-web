@@ -10,7 +10,10 @@ export default createStore({   //store라는 변수를 만들고 그 변수에 V
             { id: 2, name: "kang", email: "kang@gmail.com", password: "456789", personality: "좋다" }
         ],
         isLogin: false,
-        isLoginError: false
+        isLoginError: false,
+        dataInfo: null,
+        totalPage: null,
+        pageNum: 1
     },
     getters:{   //getter는 vuex에서 state를 수정할 수 있는 영역으로 보면된다.
         isLogin(state) {
@@ -21,6 +24,9 @@ export default createStore({   //store라는 변수를 만들고 그 변수에 V
         },
         getUser(state) {
             return state.userInfo;
+        },
+        getDataInfo(state){
+            return state.dataInfo;
         }
     },
     mutations:{
@@ -29,7 +35,7 @@ export default createStore({   //store라는 변수를 만들고 그 변수에 V
             state.isLogin = true
             state.isLoginError = false
             state.userInfo = payload
-            router.push({ name: "list" })
+            router.push({ name: "all" })
         },
         // 로그인이 실패했을 때
         loginError(state){
@@ -43,6 +49,10 @@ export default createStore({   //store라는 변수를 만들고 그 변수에 V
             state.userInfo = null
             localStorage.removeItem("access_token")            
             router.push({ name: "Login" })
+        },
+        //데이터정보받았을때
+        getDataInfoSuccess(state, payload){
+            state.dataInfo = payload
         }
     },
     actions:{
@@ -95,5 +105,19 @@ export default createStore({   //store라는 변수를 만들고 그 변수에 V
         logout({ commit }) {
             commit("logout")            
         },
-    },
+        //게시판list 데이터 commit 할때 가져오기
+        getDataList(pageNum) {
+			axios
+                .get("https://reqres.in/api/users?page=2" + pageNum)            
+                .then(res => {
+                    this.state.dataInfo = res.data.data
+                    this.state.totalPage = res.data.total
+                    // let dataInfo = res.data.data
+                    // commit("getDataInfoSuccess", dataInfo)
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+		},
+    }
 })

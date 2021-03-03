@@ -63,6 +63,12 @@ const routes = [
         component: () =>
         import('@/views/Completed.vue')
     },
+    {
+        path: "/read",
+        name: "read",
+        component: () =>
+        import('@/components/Board/Read.vue')
+    },
 ];
 
 const router = createRouter({
