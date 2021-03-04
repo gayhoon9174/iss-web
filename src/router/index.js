@@ -63,11 +63,18 @@ const routes = [
         component: () =>
         import('@/views/Completed.vue')
     },
+    //게시판
     {
         path: "/read",
         name: "read",
         component: () =>
         import('@/components/Board/Read.vue')
+    },
+    {
+        path: "/view",
+        name: "view",
+        component: () =>
+        import('@/components/Board/View.vue')
     },
 ];
 

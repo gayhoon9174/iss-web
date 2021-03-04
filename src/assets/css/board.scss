@@ -1,0 +1,94 @@
+@charset "utf-8"; 
+
+/*------------------------------------
+최초 작성일 : 2021.02.06
+마지막 수정일 : 2020.11.06 
+------------------------------------*/
+
+.board_header{
+    overflow: hidden;
+    margin-bottom:30px;
+
+    .title{
+        float: left;
+
+        h3{
+            font-family: 'Audiowide', sans-serif;
+            font-size: 30px;
+            color: $board_title_color;
+        }        
+        
+    }
+
+    .search{
+        float: right;
+    }
+}
+
+table.board_a_list{
+
+    width:100%;
+    color:$default_font_color;
+
+    tbody{
+
+        tr{
+            background:$white_color;
+            cursor: pointer;
+
+            &:hover{
+                background:$board_list_hover_color;                
+            }
+
+            &:nth-child(2n){
+                background:$board_list_2n_color;
+                
+                &:hover{
+                    background:$board_list_hover_color;
+                }
+            }
+
+            &:first-child{
+                box-sizing: border-box;
+                overflow: hidden;
+
+                td:first-child{
+                    border-radius: 20px 0 0 0;
+                }
+
+                td:last-child{
+                    border-radius: 0 20px 0 0;
+                }
+            }
+
+            &:last-child{
+                box-sizing: border-box;
+                overflow: hidden;
+
+                td:first-child{
+                    border-radius: 0 0 0 20px;
+                }
+
+                td:last-child{
+                    border-radius: 0 0 20px 0;
+                }
+            }
+
+            td{
+                height:55px;
+                vertical-align: middle;
+                padding:0 30px;
+                text-align: center;
+
+                img.list_profile{
+                    width:35px;
+                    border-radius: 50px;
+                }
+
+                &.align_left{
+                    text-align: left;
+                }
+            }
+        }
+    }
+}

@@ -1,23 +1,22 @@
 @charset "utf-8"; 
 
+
 /*------------------------------------
 최초 작성일 : 2021.02.06
 마지막 수정일 : 2020.11.06 
 ------------------------------------*/
 
-@import url('http://fonts.googleapis.com/earlyaccess/nanumgothic.css');
-@import url('https://cdn.rawgit.com/theeluwin/NotoSansKR-Hestia/master/stylesheets/NotoSansKR-Hestia.css');
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
-/* 나눔고딕 : font-family:'Nanum Gothic',Dotum,Helvetica,AppleGothic,Gulim,'Roboto','굴림',Sans-serif; */
-/* 본고딕 : font-family:'Noto Sans KR',Dotum,Helvetica,AppleGothic,Gulim,'Roboto','굴림',Sans-serif; */
+
+/* 나눔고딕 : font-family:'Nanum Gothic',Dotum,Helvetica,AppleGothic,Gulim,'굴림',Sans-serif; */
+/* 본고딕 : font-family:'Noto Sans KR',Dotum,Helvetica,AppleGothic,Gulim,'굴림',Sans-serif; */
 
 
 /* BASIC */
 body {-webkit-text-size-adjust:none;} 
 html {margin:0; padding:0;height:100%;} 
 body {height:100%;} 
-body, p, ul, ol, li, dl, dt, dd, form, table, th, td, fieldset, input, textarea, select, button, h1, h2, h3, h4, h5, h6, pre {margin:0; padding:0; -webkit-text-size-adjust:none; font-family: 'Roboto','Noto Sans Korean',Dotum,Helvetica,AppleGothic,Gulim, '굴림',Sans-serif; outline: none;} 
-body, input, textarea, select, button {word-break: keep-all; color:#17181a; font-weight: 400; letter-spacing: -0.4px; font-size:18px; font-family: 'Roboto','Noto Sans Korean',Dotum,Helvetica,AppleGothic,Gulim, '굴림',Sans-serif;} 
+body, p, ul, ol, li, dl, dt, dd, form, table, th, td, fieldset, input, textarea, select, button, h1, h2, h3, h4, h5, h6, pre {margin:0; padding:0; -webkit-text-size-adjust:none; font-family: 'Noto Sans Korean',Dotum,Helvetica,AppleGothic,Gulim, '굴림',Sans-serif; outline: none;} 
+body, input, textarea, select, button {word-break: keep-all; color:#17181a; font-weight: 400; letter-spacing: -0.2px; font-size:18px; font-family: 'Noto Sans Korean',Dotum,Helvetica,AppleGothic,Gulim, '굴림',Sans-serif;} 
 header, footer, nav, aside, section, article {display:block;} 
 fieldset, img {border:0;} 
 img { border:0;vertical-align: bottom;} 
@@ -174,7 +173,7 @@ a:focus,
 input:focus,
 button:focus,
 span:focus { outline:none !important;}
-table {border-collapse:collapse;border-spacing:0;font-size:14px;font-family:'Noto Sans KR','Noto Sans KR','Malgun Gothic','돋움',dotum,sans-serif;letter-spacing:-1px;}
+table {border-collapse:collapse;border-spacing:0;font-size:14px;font-family:'Noto Sans KR','Noto Sans KR','Malgun Gothic','돋움',dotum,sans-serif;}
 
 @-webkit-keyframes opac{from{opacity:0} to{opacity:1}}
 @keyframes opac{from{opacity:0;} to{opacity:1;}}

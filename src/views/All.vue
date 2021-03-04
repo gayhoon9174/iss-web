@@ -18,7 +18,9 @@ export default {
         Read
     },
     data () {
-    }
+        return {
+        }
+    },
 }
 </script>
 

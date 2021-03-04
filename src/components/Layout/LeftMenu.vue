@@ -15,16 +15,16 @@
             <nav>
                 <ul>
 
-                    <router-link :to="{name:'write'}" custom v-slot="{ navigate, isActive }" exact>
+                    <router-link :to="{name:'write'}" custom v-slot="{ navigate, isActive }">
                         <li @click="navigate" @keypress.enter="navigate" role="link" class="lnbtn_write" :class="[isActive && 'active']">WRITE</li>
                     </router-link>                    
-                    <router-link :to="{name:'all'}" custom v-slot="{ navigate, isActive }" exact>
+                    <router-link :to="{name:'all'}" custom v-slot="{ navigate, isActive }">
                         <li @click="navigate" @keypress.enter="navigate" role="link" :class="[isActive && 'active']">ALL</li>
                     </router-link>
-                    <router-link :to="{name:'requested'}" custom v-slot="{ navigate, isActive }" exact>
+                    <router-link :to="{name:'requested'}" custom v-slot="{ navigate, isActive }">
                         <li @click="navigate" @keypress.enter="navigate" role="link" :class="[isActive && 'active']">REQUESTED</li>
                     </router-link>
-                    <router-link :to="{name:'completed'}" custom v-slot="{ navigate, isActive }" exact>
+                    <router-link :to="{name:'completed'}" custom v-slot="{ navigate, isActive }">
                         <li @click="navigate" @keypress.enter="navigate" role="link" :class="[isActive && 'active']">COMPLETED</li>
                     </router-link>
                 </ul>

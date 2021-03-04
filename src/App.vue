@@ -8,7 +8,6 @@
 </template>
 
 <script>
-
 export default {
   beforeCreate() {
     this.$store.dispatch("getMemberInfo");
@@ -25,10 +24,10 @@ export default {
 </script>
 
 <style lang="scss">
-
 @import './assets/css/common.css';
 @import './assets/css/font.css';
 @import './assets/css/global.scss';
+@import './assets/css/board.scss';
 
 .wrap{
   height:100%;

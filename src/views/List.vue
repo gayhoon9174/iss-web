@@ -16,6 +16,8 @@ export default {
         LeftMenu
     },
     data () {
+        return {
+        }
     }
 }
 </script>
