@@ -14,13 +14,13 @@ const rejectAuthUser = (to, from, next) => {
 }
 
 const routes = [
-    {
+    {   
         path: "/",
-        name: "home",
+        name: "all",
         component: () =>
-        import('@/views/Home.vue')
+        import('@/views/All.vue')
     },
-    {
+    {   
         path: "/login",
         name: "Login",
         beforeEnter: rejectAuthUser,
@@ -28,30 +28,18 @@ const routes = [
         import('@/views/Login.vue')
     },
     {
-        path: "/mypage",
-        name: "mypage",
-        component: () =>
-        import('@/views/Mypage.vue')
-    },
-    {
-        path: "/list",
-        name: "list",
-        component: () =>
-        import('@/views/List.vue')
-    },
-    {
         path: "/write",
         name: "write",
         component: () =>
         import('@/views/Write.vue')
     },
-    {
+    {   
         path: "/all",
         name: "all",
         component: () =>
         import('@/views/All.vue')
     },
-    {
+    {   
         path: "/requested",
         name: "requested",
         component: () =>
@@ -65,16 +53,22 @@ const routes = [
     },
     //게시판
     {
-        path: "/read",
-        name: "read",
+        path: "/list",
+        name: "list",
         component: () =>
-        import('@/components/Board/Read.vue')
+        import('@/components/Board/List.vue')
     },
     {
         path: "/view",
         name: "view",
         component: () =>
         import('@/components/Board/View.vue')
+    },
+    {
+        path: "/modify/:id",
+        name: "modify",
+        component: () =>
+        import('@/components/Board/Modify.vue')
     },
 ];
 

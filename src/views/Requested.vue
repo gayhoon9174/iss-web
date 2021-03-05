@@ -26,14 +26,6 @@ export default {
 #Requested{
     width:300px;
     height:100%;
-    display:inline-block;
     float:left;
-}
-#Content{
-    width:calc(100% - 300px);
-    height:100%;
-    display:inline-block;
-    float:left;
-    background:#F5F3F9;
 }
 </style>

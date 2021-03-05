@@ -33,4 +33,19 @@ export default {
   height:100%;
 }
 
+
+#Content{
+    width:calc(100% - 300px);
+    height:100%;
+    float:left;
+    background:#F5F3F9;
+}
+
+.contents_box{
+  background: $white_color;
+  padding:40px 30px;
+  border-radius: 20px;
+  margin-bottom:30px;
+}
+
 </style>

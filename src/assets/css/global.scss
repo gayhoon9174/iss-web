@@ -1,18 +1,111 @@
-@charset "utf-8"; 
+@charset "utf-8";
 
 /*------------------------------------
 최초 작성일 : 2021.02.06
 마지막 수정일 : 2020.11.06 
 ------------------------------------*/
 
-#Content{
-    padding:60px 50px;
+#Content {
+  padding: 60px 50px;
 }
 
 /* color */
-$main_color: #791CBF;
+$main_color: #791cbf;
+$default_btn_color: #6c4f82;
 $white_color: #fff;
-$board_list_2n_color: #FAF8FF;
-$board_list_hover_color: #F2EEFC;
+$board_list_2n_color: #faf8ff;
+$board_list_hover_color: #f2eefc;
 $default_font_color: #786685;
 $board_title_color: #786685;
+
+/* font-size */
+$default_font_size: 15px;
+
+/* form_design_01 */
+.form_design_01 {
+  $border_default_color: #e3e1e6;
+  $placeholder_color: #d6cedc;
+
+  input,
+  select,
+  textarea {
+    border: 1px solid $border_default_color;
+    height: 44px;
+    border-radius: 10px;
+    width: 100%;
+    font-size: $default_font_size;
+    color: $default_font_color;
+    padding: 0 20px;
+
+    &::placeholder {
+      color: $placeholder_color;
+      font-size: $default_font_size;
+      font-weight: 300;
+    }
+  }
+
+  select {
+    background: url("~@/assets/images/form_select_arrow.png") no-repeat
+      calc(100% - 20px) 19px;
+  }
+
+  textarea {
+    padding: 20px;
+    min-height: 200px;
+  }
+
+  .contents_box {
+    ul {
+      display: flex;
+      margin-bottom: 25px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      li {
+        flex: 1;
+        margin-right: 15px;
+
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+}
+
+.page_btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  button {
+    padding: 0 35px;
+    height: 44px;
+    border-radius: 50px;
+    font-size: $default_font_size;
+    color: $white_color;
+    background: $default_btn_color;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    &.color_point {
+      background: $main_color;
+    }
+
+    i {
+      display: inline-block;
+      margin-right: 10px;
+      background-repeat: no-repeat;
+      background-position: center center;
+
+      &.apply {
+        width: 16px;
+        height: 16px;
+        background-image: url("~@/assets/images/icon_apply.png");
+      }
+    }
+  }
+}

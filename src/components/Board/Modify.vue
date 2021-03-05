@@ -1,14 +1,6 @@
 <template>
-    <div id="Write">
-        <LeftMenu></LeftMenu>
-    </div>
     <div id="Content">
-        <div class="board_header">
-            <div class="title">
-                <h3>NEW REQUEST</h3>
-            </div>
-        </div>
-        <form @submit.prevent="onSubmit" class="form_design_01">
+        <form @submit.prevent="update" class="form_design_01">
 
             <div class="contents_box">
                 <ul>
@@ -86,16 +78,16 @@
 </template>
 
 <script>
-import LeftMenu from '@/components/Layout/LeftMenu'
-import { createUser } from '@/firebase'
-import { reactive } from 'vue'
+import {reactive, computed, onMounted} from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import { getUser, updateUser } from '@/firebase'
 
 export default {
-    name: 'Write',
-    components:{
-        LeftMenu
-    },
-    setup() {
+    setup () {
+        const router = useRouter()
+        const route = useRoute()
+        const userId = computed(() => route.params.id)
+
         const form = reactive({
             subject: '',
             project: '',
@@ -105,40 +97,36 @@ export default {
             workTypeThird: '',
             workTypeFourth: '',
             workDetail: '',
-        })        
-        const onSubmit = async () => {
-            await createUser({ ...form })
+        })
+        onMounted(async () => {
+            const user = await getUser(userId.value)
+            form.subject = user.subject
+            form.project = user.project
+            form.date = user.date
+            form.workTypeFirst = user.workTypeFirst
+            form.workTypeSecond = user.workTypeSecond
+            form.workTypeThird = user.workTypeThird
+            form.workTypeFourth = user.workTypeFourth
+            form.workDetail = user.workDetail
+        })
+
+        const update = async () => {
+            await updateUser(userId.value, { ...form })
+            router.push('/')
+            form.subject = ''
+            form.project = ''
+            form.date = ''
+            form.workTypeFirst = ''
+            form.workTypeSecond = ''
+            form.workTypeThird = ''
+            form.workTypeFourth = ''
+            form.workDetail = ''
         }
-        return { form, onSubmit }
-    },
-    data: () => ({
-    }),
-    methods: {
-        submitted() {
-			this.isSubmitted = true;
-		},
-        post(){
-            this.$firebase.firestore().collection('notes').set({            
-                subject: this.subject,
-                project: this.project,
-                date: this.date,
-                workTypeFirst: this.workTypeFirst,
-                workTypeSecond: this.workTypeSecond,
-                workTypeThird: this.workTypeThird,
-                workTypeFourth: this.workTypeFourth,
-                workDetail: this.workDetail,
-            })
-            this.title = ''
-            this.content = ''
-        }
+
+        return { form, update }
     }
 }
 </script>
 
 <style lang="scss" scoped>
-#Write{
-    width:300px;
-    height:100%;
-    float:left;
-}
 </style>

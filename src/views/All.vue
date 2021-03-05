@@ -3,19 +3,19 @@
         <LeftMenu></LeftMenu>
     </div>
     <div id="Content">
-        <Read></Read>
+        <List></List>
     </div>
 </template>
 
 <script>
 import LeftMenu from '@/components/Layout/LeftMenu'
-import Read from '@/components/Board/Read'
+import List from '@/components/Board/List'
 
 export default {
     name: 'All',
     components:{
         LeftMenu,
-        Read
+        List
     },
     data () {
         return {
@@ -28,14 +28,6 @@ export default {
 #All{
     width:300px;
     height:100%;
-    display:inline-block;
     float:left;
-}
-#Content{
-    width:calc(100% - 300px);
-    height:100%;
-    display:inline-block;
-    float:left;
-    background:#F5F3F9;
 }
 </style>
