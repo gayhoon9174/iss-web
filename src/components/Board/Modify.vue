@@ -1,11 +1,11 @@
 <template>
-    <div id="Content">
+    <div>
         <form @submit.prevent="update" class="form_design_01">
 
             <div class="contents_box">
                 <ul>
                     <li>
-                        <input type="text" v-model="form.subject" placeholder="제목을 입력해 주세요" spellcheck="false" required>
+                        <input type="text" v-model="form.subject" placeholder="제목을 입력해 주세요" spellcheck="false">
                     </li>
                     <li>
                         <select v-model="form.project" required>
@@ -78,7 +78,7 @@
 </template>
 
 <script>
-import {reactive, computed, onMounted} from 'vue'
+import { reactive, computed, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { getUser, updateUser } from '@/firebase'
 
@@ -88,7 +88,8 @@ export default {
         const route = useRoute()
         const userId = computed(() => route.params.id)
 
-        const form = reactive({
+        const form = reactive({ //reactive는 data(vue3에서는 setup을 사용)나 method, computed 등을 선언하게 되면 반응형임을 명시적으로 선언해주는 것(vue3 신규 적용)
+            docKey: '',
             subject: '',
             project: '',
             date: '',
@@ -96,10 +97,11 @@ export default {
             workTypeSecond: '',
             workTypeThird: '',
             workTypeFourth: '',
-            workDetail: '',
+            workDetail: ''
         })
         onMounted(async () => {
             const user = await getUser(userId.value)
+            form.docKey = userId.value
             form.subject = user.subject
             form.project = user.project
             form.date = user.date
@@ -112,7 +114,7 @@ export default {
 
         const update = async () => {
             await updateUser(userId.value, { ...form })
-            router.push('/')
+            router.push('`/all/${form.docKey}`')
             form.subject = ''
             form.project = ''
             form.date = ''

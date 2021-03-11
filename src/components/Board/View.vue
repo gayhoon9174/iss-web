@@ -1,73 +1,115 @@
 <template>
-	<div>
-		<h1>게시판 상세보기</h1>
+    <div>
+        <form @submit.prevent="update" class="form_design_01">
 
-		<div class="AddWrap">
-			<form>
-				<table class="tbAdd">
-					<colgroup>
-						<col width="15%" />
-						<col width="*" />
-					</colgroup>
-					<tr>
-						<th>제목</th>
-						<td>{{subject}}</td>
-					</tr>
-					<tr>
-						<th>내용</th>
-						<td class="txt_cont" v-html="cont"></td>
-					</tr>
-				</table>
-			</form>
-		</div>
+            <div class="contents_box">
+                <ul>
+                    <li>
+						<span>제목</span>
+						<p>{{ form.subject }}</p>
+                    </li>
+                    <li>
+						<span>프로젝트</span>
+						<p>{{ form.project }}</p>
+                    </li>
+                    <li>
+						<span>처리 희망일</span>
+						<p>{{ form.date }}</p>
+                    </li>
+                </ul>
+            </div>
 
-		<div class="btnWrap">
-			<a href="javascript:;" @click="fnList" class="btn">목록</a>
-		</div>	
-	</div>
+            <div class="contents_box">
+                <ul>
+                    <li>
+						<p>{{ form.workTypeFirst }}</p>
+                    </li>
+                    <li>
+						<p>{{ form.workTypeSecond }}</p>
+                    </li>
+                    <li>
+						<p>{{ form.workTypeThird }}</p>
+                    </li>
+                    <li>
+						<p>{{ form.workTypeFourth }}</p>
+                    </li>
+                    <!-- <li>
+                        <div class="section_control_btn">
+                            <button type="button" class="scb_minus">-</button>
+                            <button type="button" class="scb_plus">+</button>
+                        </div>
+                    </li> -->
+                </ul>
+                <ul>
+                    <li>
+						<p>{{ form.workDetail }}</p>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="page_btn">				
+				<router-link :to="`/modify/${form.docKey}`">
+					<button type="submit" class="color_point"><i class="apply">icon</i>Modify</button>
+				</router-link>
+            </div>
+            
+        </form>
+    </div>
 </template>
 
 <script>
+import { reactive, computed, onMounted } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import { getUser, updateUser } from '@/firebase'
+
 export default {
-	data() {
-		return {
-			body:this.$route.query
-			,subject:''
-			,cont:''
-			,view:''
-			,num:this.$route.query.num
-		}
-	}
-	,mounted() {
-		this.fnGetView();
-	}
-	,methods:{
-		fnGetView() {
-			this.$axios.get('http://localhost:3000/api/board/'+this.body.num,{params:this.body})
-			.then((res)=>{
-				this.view = res.data.view[0];
-				this.subject = this.view.subject;
-				this.cont = this.view.cont.replace(/(\n)/g,'<br/>');
-			})
-			.catch((err)=>{
-				console.log(err);
-			})
-		}
-		,fnList(){
-			delete this.body.num;
-			this.$router.push({path:'./list',query:this.body});
-		}
-	}
+    setup () {
+        const router = useRouter()
+        const route = useRoute()
+        const userId = computed(() => route.params.id)
+
+        const form = reactive({ //reactive는 data(vue3에서는 setup을 사용)나 method, computed 등을 선언하게 되면 반응형임을 명시적으로 선언해주는 것(vue3 신규 적용)
+            docKey: '',
+			subject: '',
+            project: '',
+            date: '',
+            workTypeFirst: '',
+            workTypeSecond: '',
+            workTypeThird: '',
+            workTypeFourth: '',
+            workDetail: ''
+        })
+        onMounted(async () => {
+            const user = await getUser(userId.value)
+			form.docKey = userId.value
+            form.subject = user.subject
+            form.project = user.project
+            form.date = user.date
+            form.workTypeFirst = user.workTypeFirst
+            form.workTypeSecond = user.workTypeSecond
+            form.workTypeThird = user.workTypeThird
+            form.workTypeFourth = user.workTypeFourth
+            form.workDetail = user.workDetail
+        })
+		
+
+        const update = async () => {
+            await updateUser(userId.value, { ...form })
+            router.push('/all')
+            form.subject = ''
+            form.project = ''
+            form.date = ''
+            form.workTypeFirst = ''
+            form.workTypeSecond = ''
+            form.workTypeThird = ''
+            form.workTypeFourth = ''
+            form.workDetail = ''
+        }
+
+        return { form, update }
+    }
 }
 </script>
 
-<style scoped>
-	.tbAdd{border-top:1px solid #888;}
-	.tbAdd th, .tbAdd td{border-bottom:1px solid #eee; padding:5px 0; }
-	.tbAdd td{padding:10px 10px; box-sizing:border-box; text-align:left;}
-	.tbAdd td.txt_cont{height:300px; vertical-align:top;}
-	.btnWrap{text-align:center; margin:20px 0 0 0;}
-	.btnWrap a{margin:0 10px;}
-	.btnAdd {background:#43b984}
-	.btnDelete{background:#f00;}
+<style lang="scss" scoped>
 </style>

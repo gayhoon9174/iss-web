@@ -59,22 +59,22 @@ const routes = [
         import('@/components/Board/List.vue')
     },
     {
-        path: "/view",
+        path: "/view/:id",
         name: "view",
         component: () =>
-        import('@/components/Board/View.vue')
+        import('@/views/View.vue')
     },
     {
         path: "/modify/:id",
         name: "modify",
         component: () =>
-        import('@/components/Board/Modify.vue')
+        import('@/views/Modify.vue')
     },
 ];
 
 const router = createRouter({
     history: createWebHistory(),
-    routes,
-});
+    routes
+})
 
 export default router;

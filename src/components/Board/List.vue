@@ -39,18 +39,22 @@
                 <col width="10%" />
             </colgroup>
             <tbody>
-                <tr v-for="{id, subject, project, workTypeFirst, workTypeSecond, date} in users" :key="id">
-                    <td class="align_left">{{ subject }}</td>
-                    <td>{{ project }}</td>
-                    <td>{{ workTypeFirst }} > {{ workTypeSecond }}</td>
-                    <td>{{ date }}</td>
-                    <td>
-                        <router-link :to="'/modify/${id}'">
-                            <button>Edit</button>
-                        </router-link>
-                        <button @click="deleteUser(id)">Delete</button>
-                    </td>
-                </tr>
+                
+                <router-link :to="`/view/${id}`" custom v-slot="{ navigate }" v-for="{id, subject, project, workTypeFirst, workTypeSecond, date} in users" :key="id">
+                    <tr @click="navigate" @keypress.enter="navigate" role="link">
+                        <td class="align_left">{{ subject }}</td>
+                        <td>{{ project }}</td>
+                        <td>{{ workTypeFirst }} > {{ workTypeSecond }}</td>
+                        <td>{{ date }}</td>
+                        <td>
+                            <router-link :to="`/modify/${id}`">
+                                <button>Modify</button>
+                            </router-link>
+                            <button @click="deleteUser(id)">Delete</button>
+                        </td>
+                    </tr>
+                </router-link>                
+
             </tbody>
         </table>
     </div>    
@@ -67,7 +71,7 @@ export default {
     setup() {
         const users = useLoadUsers()
         return { users, deleteUser }
-    },
+    }
     // computed:{
     //     ...mapState(['dataInfo']),
     //     ...mapGetters(['getDataInfo']),
