@@ -114,7 +114,7 @@ export default {
 
         const update = async () => {
             await updateUser(userId.value, { ...form })
-            router.push('`/all/${form.docKey}`')
+            router.push(`/view/${form.docKey}`)
             form.subject = ''
             form.project = ''
             form.date = ''

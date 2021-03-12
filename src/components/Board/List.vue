@@ -46,12 +46,6 @@
                         <td>{{ project }}</td>
                         <td>{{ workTypeFirst }} > {{ workTypeSecond }}</td>
                         <td>{{ date }}</td>
-                        <td>
-                            <router-link :to="`/modify/${id}`">
-                                <button>Modify</button>
-                            </router-link>
-                            <button @click="deleteUser(id)">Delete</button>
-                        </td>
                     </tr>
                 </router-link>                
 
@@ -62,7 +56,7 @@
 
 <script>
 // import { mapState, mapGetters, mapActions } from "vuex"
-import { useLoadUsers, deleteUser } from '@/firebase'
+import { useLoadUsers } from '@/firebase'
 
 export default {
     name: 'Read',
@@ -70,7 +64,7 @@ export default {
     },
     setup() {
         const users = useLoadUsers()
-        return { users, deleteUser }
+        return { users }
     }
     // computed:{
     //     ...mapState(['dataInfo']),

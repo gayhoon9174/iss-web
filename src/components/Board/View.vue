@@ -1,8 +1,8 @@
 <template>
     <div>
-        <form @submit.prevent="update" class="form_design_01">
+        <form class="form_design_01">
 
-            <div class="contents_box">
+            <div class="contents_box view_title">
                 <ul>
                     <li>
 						<span>제목</span>
@@ -18,39 +18,40 @@
                     </li>
                 </ul>
             </div>
-
-            <div class="contents_box">
-                <ul>
-                    <li>
-						<p>{{ form.workTypeFirst }}</p>
-                    </li>
-                    <li>
-						<p>{{ form.workTypeSecond }}</p>
-                    </li>
-                    <li>
-						<p>{{ form.workTypeThird }}</p>
-                    </li>
-                    <li>
-						<p>{{ form.workTypeFourth }}</p>
-                    </li>
-                    <!-- <li>
-                        <div class="section_control_btn">
-                            <button type="button" class="scb_minus">-</button>
-                            <button type="button" class="scb_plus">+</button>
-                        </div>
-                    </li> -->
-                </ul>
-                <ul>
-                    <li>
-						<p>{{ form.workDetail }}</p>
-                    </li>
-                </ul>
+            <div class="contents_box work_type_wrap">
+                <div class="work_type_head">
+                    <ul>
+                        <li>
+                            <span>{{ form.workTypeFirst }}</span>
+                        </li>
+                        <li>
+                            <span>{{ form.workTypeSecond }}</span>
+                        </li>
+                        <li>
+                            <span>{{ form.workTypeThird }}</span>
+                        </li>
+                        <li>
+                            <span>{{ form.workTypeFourth }}</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="work_type_body">
+                    <ul>
+                        <li>
+                            <textarea v-model="form.workDetail" readonly></textarea>
+                        </li>
+                    </ul>
+                </div>
             </div>
             
-            <div class="page_btn">				
+            <div class="page_btn">	
+                <router-link :to="{name:'all'}">
+					<button type="button"><i class="list">icon</i>List</button>
+				</router-link>			
 				<router-link :to="`/modify/${form.docKey}`">
-					<button type="submit" class="color_point"><i class="apply">icon</i>Modify</button>
+					<button type="button"><i class="modify">icon</i>Modify</button>
 				</router-link>
+				<button type="button" @click="deleteWork"><i class="delete">icon</i>Delete</button>
             </div>
             
         </form>
@@ -60,7 +61,8 @@
 <script>
 import { reactive, computed, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { getUser, updateUser } from '@/firebase'
+import { getUser, deleteUser } from '@/firebase'
+
 
 export default {
     setup () {
@@ -91,25 +93,111 @@ export default {
             form.workTypeFourth = user.workTypeFourth
             form.workDetail = user.workDetail
         })
-		
 
-        const update = async () => {
-            await updateUser(userId.value, { ...form })
-            router.push('/all')
-            form.subject = ''
-            form.project = ''
-            form.date = ''
-            form.workTypeFirst = ''
-            form.workTypeSecond = ''
-            form.workTypeThird = ''
-            form.workTypeFourth = ''
-            form.workDetail = ''
+        const deleteWork = async () => {
+            await deleteUser(form.docKey)
+            router.push(`/all`)
         }
 
-        return { form, update }
-    }
+        return { form, deleteWork, deleteUser }
+    },
 }
 </script>
 
 <style lang="scss" scoped>
+@import '@/assets/css/global.scss';
+
+.form_design_01{
+    .contents_box.view_title{
+        ul{
+            li{
+                position:relative;
+
+                &::after{
+                    position:absolute;
+                    right:0;
+                    top:0;
+                    display:inline-block;
+                    content: '';
+                    width:1px;
+                    height:100%;
+                    background: $board_line_color;
+                }
+
+                &:last-child::after{
+                    display:none;
+                }
+
+                span{
+                    display: block;
+                    font-size:12px;
+                    color: $board_view_subtitle_color;
+                    margin-bottom:4px;
+                }
+
+                p{
+                    font-size:15px;
+                    color: $default_font_color;
+                }
+            }
+        }
+    }
+
+    .contents_box.work_type_wrap{
+        padding:0;
+        border-radius: initial;
+        background:initial;
+
+        .work_type_head{
+            background: $main_color;
+            padding:20px 30px;
+            color:$white_color;
+            font-size:$default_font_size;
+            border-radius: 20px 20px 0 0;
+
+            ul{
+
+                li{
+                    flex:initial;
+                    margin-right:0;
+
+                    &::after{
+                        position:relative;
+                        float:right;
+                        content: '';
+                        width:7px;
+                        height:5px;
+                        background:url("~@/assets/images/board_work_arrow.png") no-repeat center center;
+                        margin:9px 30px 0 30px;
+                    }
+
+                    &:last-child::after{
+                        display:none;
+                    }
+                }
+            }
+        }
+
+        .work_type_body{
+            border:1px solid $main_color;
+            border-radius: 0 0 20px 20px;
+            padding:40px 30px;
+            font-size:$default_font_size;
+            color:$default_font_color;
+            background:$white_color;
+
+            ul{
+
+                li{
+
+                    textarea:read-only{
+                        background: $white_color;
+                        padding:0;
+                        border:0;
+                    }
+                }
+            }
+        }
+    }
+}
 </style>

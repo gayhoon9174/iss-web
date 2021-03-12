@@ -17,6 +17,8 @@ $board_list_2n_color: #faf8ff;
 $board_list_hover_color: #f2eefc;
 $default_font_color: #786685;
 $board_title_color: #786685;
+$board_view_subtitle_color: #d6cedc;
+$board_line_color: #eeebf1;
 
 /* font-size */
 $default_font_size: 15px;
@@ -90,6 +92,7 @@ $default_font_size: 15px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    margin-right: 15px;
 
     &.color_point {
       background: $main_color;
@@ -105,6 +108,24 @@ $default_font_size: 15px;
         width: 16px;
         height: 16px;
         background-image: url("~@/assets/images/icon_apply.png");
+      }
+
+      &.modify {
+        width: 13px;
+        height: 13px;
+        background-image: url("~@/assets/images/icon_modify.png");
+      }
+
+      &.list {
+        width: 14px;
+        height: 11px;
+        background-image: url("~@/assets/images/icon_list.png");
+      }
+
+      &.delete {
+        width: 16px;
+        height: 13px;
+        background-image: url("~@/assets/images/icon_delete.png");
       }
     }
   }

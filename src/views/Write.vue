@@ -89,6 +89,7 @@
 import LeftMenu from '@/components/Layout/LeftMenu'
 import { createUser } from '@/firebase'
 import { reactive } from 'vue'
+import { useRouter } from 'vue-router'
 
 export default {
     name: 'Write',
@@ -96,6 +97,8 @@ export default {
         LeftMenu
     },
     setup() {
+        const router = useRouter()
+
         const form = reactive({
             subject: '',
             project: '',
@@ -108,6 +111,7 @@ export default {
         })        
         const onSubmit = async () => {
             await createUser({ ...form })
+            router.push(`/all`)
         }
         return { form, onSubmit }
     },
